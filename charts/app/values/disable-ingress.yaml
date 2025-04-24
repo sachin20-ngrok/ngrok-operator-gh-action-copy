@@ -1,0 +1,3 @@
+# Disable Kubernetes Ingress
+ingress:
+  enabled: false

@@ -1,0 +1,8 @@
+# Use the ngrok agent endpoint CRDs with an ngrok traffic policy
+ngrokEndpoints:
+  trafficPolicy:
+    on_http_request:
+      - actions:
+          - type: oauth
+            config:
+              provider: google

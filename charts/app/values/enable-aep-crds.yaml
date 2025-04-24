@@ -1,0 +1,3 @@
+# Enable ngrok agent endpoint CRDs
+ngrokEndpoints:
+  enabled: true

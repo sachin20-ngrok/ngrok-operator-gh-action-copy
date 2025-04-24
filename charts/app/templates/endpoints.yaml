@@ -1,0 +1,18 @@
+{{- if .Values.ngrokEndpoints.enabled -}}
+kind: AgentEndpoint
+apiVersion: ngrok.k8s.ngrok.com/v1alpha1
+metadata:
+  name: {{ include "app.fullname" . }}-k8s-test
+  namespace: {{ .Release.Namespace }}
+spec:
+  bindings: []
+  url: "https://{{ include "app.fullname" . }}-k8s-test.ngrok.app:443"
+  metadata: "{}"
+  {{- if .Values.ngrokEndpoints.trafficPolicy }}
+  trafficPolicy:
+    inline:
+    {{- toYaml .Values.ngrokEndpoints.trafficPolicy | nindent 6 }}
+  {{- end }}
+  upstream:
+    url: "http://{{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}"
+{{- end }}

@@ -1,0 +1,3 @@
+# Enable Kubernetes Gateway API
+gateway:
+  enabled: true

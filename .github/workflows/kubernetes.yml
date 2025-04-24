@@ -1,0 +1,50 @@
+name: GHA e2e Test
+on:
+  workflow_dispatch:
+    inputs:
+      plan:
+        description: "Test plan to run"
+        required: true
+        default: "plans/gateway.yaml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        job-number: [1]
+    timeout-minutes: 30
+    name: "CI"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.5"
+      - name: Start k8s cluster
+        uses: engineerd/setup-kind@v0.6.2
+      - name: Install Gateway API v1.2.0 & GatewayClass
+        run: |
+          kubectl apply -f manifests/gateway-api-v1.2.0.yaml
+          kubectl apply -f manifests/gateway-class.yaml
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+      - name: Install ngrok Helm chart
+        run: |
+          helm repo add ngrok https://charts.ngrok.com
+      - name: Deploy the ngrok-operator Helm chart
+        run: |
+          helm install ngrok-operator ngrok/ngrok-operator \
+          --create-namespace \
+          --namespace ngrok-operator \
+          --version 0.17.0 \
+          --set credentials.apiKey=${{ secrets.NGROK_API_KEY }} \
+          --set credentials.authtoken=${{ secrets.NGROK_AUTHTOKEN }}
+      - name: Run Go script (app Helm install, timings, etc)
+        run: go run ./... ${{ github.event.inputs.plan }}
+        env:
+          JOB_NUMBER: ${{ matrix.job-number }}
+      - name: Operator cleanup
+        run: sleep 30
