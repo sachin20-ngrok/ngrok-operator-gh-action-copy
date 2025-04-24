@@ -5,7 +5,6 @@ This repo uses Github Actions to deploy the ngrok operator in a single node Kube
 On push to this repo, the `kubernetes.yml` file in `.github/workflows` runs. It:
 
 1. starts a k8s cluster
-1. installs the Kubernetes Gateway API
 1. installs Helm
 1. installs ngrok Helm chart
 1. deploys ngrok Helm chart

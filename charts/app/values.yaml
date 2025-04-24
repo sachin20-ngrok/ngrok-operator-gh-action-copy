@@ -124,15 +124,3 @@ ngrokEndpoints:
   enabled: false
   # If supplied, the traffic policy to apply to the endpoint.
   trafficPolicy: null
-
-gateway:
-  enabled: false
-
-  gatewayClass:
-    create: false # This is applied from the `manifests` directory because it is shared across resources.
-    name: "ngrok"
-    controllerName: "ngrok.com/gateway-controller"
-
-  # Specify this to override the gateway name. Otherwise
-  # one will be generated based off of the release name.
-  name: null

@@ -1,6 +1,0 @@
-# Enable Kubernetes Gateway API
-gateway:
-  enabled: true
-
-  gatewayClass:
-    create: true
