@@ -60,7 +60,7 @@ service:
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
-  enabled: true
+  enabled: false
   className: "ngrok"
   annotations:
     # k8s.ngrok.com/mapping-strategy: endpoints
@@ -116,11 +116,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
 #
 # For the "ngrok Operator on Github Actions" blog post walkthrough!
 #
-ngrokEndpoints:
-  enabled: false
-  # If supplied, the traffic policy to apply to the endpoint.
-  trafficPolicy: null
+# ngrokEndpoints:
+#   enabled: false
+#   # If supplied, the traffic policy to apply to the endpoint.
+#   trafficPolicy: null
