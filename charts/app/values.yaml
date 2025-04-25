@@ -119,7 +119,7 @@ affinity: {}
 #
 # For the "ngrok Operator on Github Actions" blog post walkthrough!
 #
-# ngrokEndpoints:
-#   enabled: false
-#   # If supplied, the traffic policy to apply to the endpoint.
-#   trafficPolicy: null
+ngrokEndpoints:
+  enabled: false
+  # If supplied, the traffic policy to apply to the endpoint.
+  trafficPolicy: null

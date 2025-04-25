@@ -8,7 +8,7 @@ plans:
         values-files:
           - "./charts/app/values/disable-ingress.yaml"
           - "./charts/app/values/enable-aep-crds.yaml"
-          # - "./charts/app/values/enable-aep-crd-traffic-policy.yaml"
+          - "./charts/app/values/enable-aep-crd-traffic-policy.yaml"
     tests:
       - wait-url-ready:
           url: https://app-{{.InstanceNumber}}-k8s-test.ngrok.app
@@ -24,7 +24,7 @@ plans:
         values-files:
           - "./charts/app/values/disable-ingress.yaml"
           - "./charts/app/values/enable-aep-crds.yaml"
-          # - "./charts/app/values/enable-aep-crd-traffic-policy.yaml"
+          - "./charts/app/values/enable-aep-crd-traffic-policy.yaml"
     tests:
       - wait-url-ready:
           url: https://app-{{.InstanceNumber}}-k8s-test.ngrok.app
