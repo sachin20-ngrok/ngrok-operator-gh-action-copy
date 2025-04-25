@@ -42,5 +42,11 @@ jobs:
         run: go run ./... ${{ github.event.inputs.plan }}
         env:
           JOB_NUMBER: ${{ matrix.job-number }}
+          NGROK_API_KEY: ${{ secrets.NGROK_API_KEY }}`
       - name: Operator cleanup
         run: sleep 30
+      - name: Diagnostics
+        run: |
+          kubectl get all -A
+          kubectl get clep -A
+          kubectl get aep -A
