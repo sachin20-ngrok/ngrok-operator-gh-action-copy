@@ -7,7 +7,7 @@ plans:
         namespace: default
         values-files:
           - "./charts/app/values/disable-ingress.yaml"
-          - "./charts/app/values/enable-aep-crds.yaml"
+          #- "./charts/app/values/enable-aep-crds.yaml"
           - "./charts/app/values/enable-aep-crd-traffic-policy.yaml"
     tests:
       - wait-url-ready:
